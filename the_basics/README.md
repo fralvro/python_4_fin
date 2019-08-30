@@ -8,14 +8,14 @@ This workshop is designed for beginers, if you already know some of the topics I
 
 1-  Getting Started <------
 
-    *   Intro to GitHub
+[Intro to GitHub](git_intro.md)
+
         
-        *   [What is GitHub?](git_intro.md)
+        *   What is GitHub?
         *   Download Class Repository
         
-    *   Installing Python
+[Installing Python](inst_python.md)
     
-        *   Unix-Based
         *   Anaconda
         *   The concept of Environment
         *   Interacting with Jupyter and Spyder
