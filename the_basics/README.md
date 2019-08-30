@@ -1,13 +1,14 @@
 # The Basics
 
-This workshop is designed for beginers, 
+This workshop is designed for beginers, if you already know some of the topics I encourage you to come only when you think you'll lern new stuff. After every session I will point with an arrow the topic in which we stopped, this way you can know how if the following topics that we are going to cover are interesting for you or not. 
 
 ## Table Of Contents
 
-1-  Getting Started
+1-  Getting Started <------
 
     *   Intro to GitHub
-    
+        
+        *   What is GitHub?
         *   Download Class Repository
         
     *   Installing Python
