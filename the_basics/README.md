@@ -1,5 +1,7 @@
 # The Basics
 
+**Objective:** Make you understand basic concepts about how Git and Python 3.6 work so you can realize what to look for in official documentation or in the web.
+
 This workshop is designed for beginers, if you already know some of the topics I encourage you to come only when you think you'll lern new stuff. After every session I will point with an arrow the topic in which we stopped, this way you can know how if the following topics that we are going to cover are interesting for you or not. 
 
 ## Table Of Contents
@@ -8,7 +10,7 @@ This workshop is designed for beginers, if you already know some of the topics I
 
     *   Intro to GitHub
         
-        *   What is GitHub?
+        *   [What is GitHub?](git_intro.md)
         *   Download Class Repository
         
     *   Installing Python
@@ -78,3 +80,29 @@ This workshop is designed for beginers, if you already know some of the topics I
 7-  If we still have time...
 
     *   In Class Project
+
+
+
+
+
+
+
+## References
+
+![python_finance](media/python_finance_oreilly.jpeg)
+
+
+Yves Hilpisch. 2014. Python for Finance: Analyze Big Financial Data (1st ed.). O'Reilly Media, Inc..
+
+
+
+<img src="media/copying_stack.jpeg" width="200" height="300" />
+
+**Just joking but remember, this might be a valuable skill in the future**
+
+
+
+### Previous Classes/Professors/Workshops
+
+Gerard Felipe. 2019. Git: Una Introducción práctica. Workshop at ITAM
+
