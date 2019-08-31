@@ -22,18 +22,18 @@ This workshop is designed for beginers, if you already know some of the topics I
 
 2-  Python Basics
 
-    *   Programming Basics
+[Programming Basics](basic_python.ipynb)
     
         *   Data Types
         *   Conditionals
         *   Lists
         *   Loops
         *   Built-in-Functions
-        
-    *   Libraries
 
-        *   Library concept
-        *   Installing Libraries
+[Modules](libraries.ipynb)
+
+        *   Module and Package concept
+        *   Installing Modules
 
 3-  Pandas
 
