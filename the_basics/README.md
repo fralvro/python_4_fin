@@ -30,7 +30,7 @@ This workshop is designed for beginers, if you already know some of the topics I
         *   Loops
         *   Built-in-Functions
 
-[Modules](libraries.ipynb) <---- FINISH THIS
+[Modules](libraries.ipynb) 
 
         *   Module and Package concept
         *   Installing Modules
