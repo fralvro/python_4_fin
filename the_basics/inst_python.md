@@ -14,14 +14,15 @@ Anaconda Navigator is a desktop graphical user interface (GUI) included in Anaco
 
 *   Should I install Python before? No
 *   Check your operating system and [Download Anaconda](https://docs.anaconda.com/anaconda/install/)
-*   Create a Python 3.6 environment (I'll guide you)
+*   Launch *Anaconda Navigator* [Click here if you don't see it](https://www.youtube.com/watch?v=r0AN3LnAmaA)
+*   Create a Python 3.6 environment 
+    *   [Follow this Repository](https://github.com/mGalarnyk/Installations_Mac_Ubuntu_Windows/) if you want to know how to use the command line to use Anaconda
+    *   
 
 ### 1.3- Let's get familiar with what we just downloaded
 
-*   Install Spyder
-*   Install Jupyter Notebooks
-*   Open Spyder
-*   Open Jupyter Notebooks
+*   Launch Spyder
+*   Launch Jupyter Notebooks
 
 
 ## References
