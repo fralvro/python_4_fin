@@ -6,7 +6,7 @@ This workshop is designed for beginers, if you already know some of the topics I
 
 ## Table Of Contents
 
-1-  Getting Started <------
+1-  Getting Started 
 
 [Intro to GitHub](git_intro.md)
 
@@ -22,7 +22,7 @@ This workshop is designed for beginers, if you already know some of the topics I
 
 2-  Python Basics
 
-[Programming Basics](basic_python.ipynb)
+[Programming Basics](basic_python.ipynb) <------ We stopped here
     
         *   Data Types
         *   Conditionals
@@ -30,7 +30,7 @@ This workshop is designed for beginers, if you already know some of the topics I
         *   Loops
         *   Built-in-Functions
 
-[Modules](libraries.ipynb) <---- FINISH THIS
+[Modules](libraries.ipynb) 
 
         *   Module and Package concept
         *   Installing Modules
