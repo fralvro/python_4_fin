@@ -20,7 +20,7 @@ This workshop is designed for beginers, if you already know some of the topics I
         *   The concept of Environment
         *   Interacting with Jupyter and Spyder
 
-2-  Python Basics <-----
+2-  Python Basics 
 
 [Programming Basics](basic_python.ipynb)
     
@@ -35,9 +35,9 @@ This workshop is designed for beginers, if you already know some of the topics I
         *   Module and Package concept
         *   Installing Modules
 
-3-  Pandas
+3-  Pandas <-------
 
-    *   Pandas
+[Pandas](pandas/pandas_intro.ipynb)
 
         *   What is pandas?
         *   Create DataFrame
