@@ -5,7 +5,7 @@ This series of workshops cover some applications of Data Science into Finance. T
 ## Workshops
 
 [The basics](the_basics/README.md)
-
+[Challenge Bootcamp](challenge/README.md)
 
 
 
