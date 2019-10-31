@@ -4,7 +4,7 @@
 
 The material is designed for intermediate python users. Though, there is basic material in this repository, I encourage you to look at [the_basics](../the_basics) workshop. If you feel you need to understand more basic concepts I can stop to cover those topics quickly.
 
-**My class approach proposal:** I won't be lecturing specific topics and then apply the theory to the case study. The idea is to work the opposite way, I will begin to work in the case study and suddently stop to make sure everything is clear. The idea is that you get a better sense of the flow of work in Data Science.
+**My approach proposal:** I won't be lecturing specific topics and then apply the theory to the case study. The idea is to work the opposite way, I will begin to work in the case study and suddently stop to make sure everything is clear. The idea is that you get a better sense of the flow of work in Data Science.
 
 After explaining my work I will stop and ask you to continue working in the case. I'll create specific points so that you know how to address each problem based in the work I show you before.
 
