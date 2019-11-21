@@ -41,6 +41,10 @@ from pandas.plotting import autocorrelation_plot
 from statsmodels.tsa.arima_model import ARIMA
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from matplotlib import pyplot
+import math  
+from sklearn.preprocessing import PolynomialFeatures 
+from sklearn.model_selection import train_test_split
+from sklearn import datasets, linear_model
 
 
 os.getcwd()
@@ -222,7 +226,17 @@ for t in range(len(test)):
 	print('predicted=%f, expected=%f' % (yhat, obs))
 error_mse = mean_squared_error(test, predictions)
 error_mae = mean_absolute_error(test, predictions)
-r2 = r2_score(test, predictions)
+
+"""
+Why R2 not useful 
+
+So we tend to evaluate a time-series model based more on how well it predicts 
+future values, than how well it fits past values. But the R2 mainly reflects the 
+latter, not the former. 
+"""
+
+r2 = r2_score(test, predictions) # Negative means that it is worst than using the average
+root_mse = math.sqrt(error_mse)
 
 # Compare error to mean 
 
@@ -262,13 +276,150 @@ forecast[2]
 # MODEL 2
 # Idea 1: Divide number of events over size of state and then multiply by size
 
+
+
 # Model 3
 # Idea 1: Do the same as time series but including time as one of the variables
 # Idea 2: Try XGBoost
 
+# Linear and Polinomial Regression
+
+
+year_wh = year_wh.reset_index()
+
+year_wh['YEAR']= year_wh['YEAR'].dt.year
+year_wh['EVENTS']= year_wh['EVENT_ID']
+
+
+## We know from plot that we don't have a linear relationship between time and events
+
+
+## EXPLAIN Train and Test Set: Why we need this? To have a better perspective of how 
+# our model performs in real life. Not testing with what it trained
+
+y = pd.DataFrame(year_wh['EVENTS'])
+x = pd.DataFrame(year_wh['YEAR'])
+
+x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.33,random_state=42)
+
+regr = linear_model.LinearRegression()
+
+regr.fit(x_train,y_train)
+
+y_pred = regr.predict(x_test)
+
+regr.coef_
+
+mse_lin = mean_squared_error(y_test, y_pred)
+mse_lin
+
+root_mse_lin = math.sqrt(mse_lin)
+root_mse_lin
+
+mae_lin = mean_absolute_error(y_test, y_pred)
+
+### Plots of Training
+
+plt.scatter(x_test, y_test,  color='black')
+plt.plot(x_test, y_pred, color='blue', linewidth=3)
+
+plt.xlabel(xlabel='Year')
+plt.ylabel(ylabel='Events')
+plt.title(label='Linear Regression in Test Set')
+plt.show()
+
+
+### Plot of model 
+
+y_plot = regr.predict(x)
+
+plt.scatter(x, y,  color='black')
+plt.plot(x, y_plot, color='blue', linewidth=3)
+
+plt.xlabel(xlabel='Year')
+plt.ylabel(ylabel='Events')
+plt.title(label='Linear Regression in all Data')
+plt.show()
+
+
+## Predict 2020 
+
+goal = np.array([[2020]])
+pred_2020 = regr.predict(goal)
+
+float(pred_2020)
+
+
+# Polynomial 
+
+y = year_wh['EVENTS']
+x = year_wh['YEAR']
+
+degree = 5
+z = np.polyfit(x, y, degree)
+
+# See coeffs
+z
+
+ypred = np.polyval(z,x)
 
 
 
+plt.plot( x, y,marker='o', markerfacecolor='blue', markersize=3, color='skyblue', linewidth=2)
+plt.plot( x, ypred, marker='', color='olive', linewidth=2)
+plt.xlabel(xlabel='Year')
+plt.ylabel(ylabel='Events')
+plt.title(label='Polynomial Regression')
+plt.show()
 
 
+r2 = r2_score(y.values, ypred) 
 
+mse_pol = mean_squared_error(y.values, ypred)
+mse_pol
+
+root_mse_pol = math.sqrt(mse_lin)
+root_mse_pol
+
+mae_pol = mean_absolute_error(y.values, ypred)
+
+# Get Optimal Polynomial Regression
+
+# Remember Train and Test (Making our model consistent always, not only this case)
+
+
+x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.33,random_state=42)
+
+errors = []
+for i in range(50):
+    degree = i
+    z = np.polyfit(x_train, y_train, degree)
+    
+    # See coeffs
+    z
+    
+    ypred = np.polyval(z,x_test)
+    
+    mae_pol_it = mean_absolute_error(y_test.values, ypred)
+    
+    errors.append(mae_pol_it)
+
+
+degree = 3
+z = np.polyfit(x_train, y_train, degree)
+
+# See coeffs
+z
+
+ypred = np.polyval(z,x_test)
+
+mae_pol_it = mean_absolute_error(y_test.values, ypred)
+
+errors.append(mae_pol_it)
+
+
+# Predict the year we want (2020)
+
+pred_2020 = np.polyval(z,2020)
+
+pred_2020
