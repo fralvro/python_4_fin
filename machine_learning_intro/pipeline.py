@@ -244,6 +244,21 @@ plt.show(bar)
 
 # Analyze Apps by Free / Charge
 
+install_sum_type=apps.groupby('Type')['Installs'].agg('sum').reset_index(name='Number_Installations')
+
+def type_bar_sum(data):
+    fig=plt.figure(figsize=(12,6))
+    
+    title=plt.title('Comparision of  types (Number of Installations)')
+    content_bar = sns.barplot(x=data['Type'],y=data['Number_Installations'])
+    plt.show(content_bar)
+type_bar_sum(install_sum_type)
+
+# Charge/Free ratio
+
+100*install_sum_type.loc[1][1]/install_sum_type.loc[0][1]
+
+money.loc[data['Category'] == 'FINANCE']
 
 '''
 FOR PROJECT 2
