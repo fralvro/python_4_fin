@@ -35,6 +35,7 @@ This workshop is a 10-week course, designed for people familiar with Python 3.6.
 3-  Regression
 
     * Linear Regression
+    * Standarizing and Normalizing Data
     * Polynomial Regression
     * Logistic Regression
 
@@ -44,9 +45,11 @@ This workshop is a 10-week course, designed for people familiar with Python 3.6.
 
 6- Tree Based Models
 
-7- Neuranl Networks
+7- Neural Networks
 
 8- Time Series
+
+9- Make Decisions
 
 
 ## Useful Material
