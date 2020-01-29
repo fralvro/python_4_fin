@@ -258,7 +258,32 @@ type_bar_sum(install_sum_type)
 
 100*install_sum_type.loc[1][1]/install_sum_type.loc[0][1]
 
-money.loc[data['Category'] == 'FINANCE']
+
+# Analyze Apps by Name 
+
+apps['Name_check']=['>2 words' if len(x.split())>2 else '<=2words' for x in apps['App'] ]
+
+data_install= apps.groupby('Name_check')['Installs'].agg('sum').reset_index(name='Number_Installations')
+data_apps= apps.groupby('Name_check').size().reset_index(name='Number_Apps')
+
+
+fig,axes = plt.subplots(figsize=(15,3),ncols=2, nrows=1)
+
+title=axes[0].set_title("No. of Installations", y = 1.1)
+title=axes[1].set_title("No of Apps", y = 1.1)
+
+plot1=sns.barplot( x=data_install['Name_check'],y=data_install['Number_Installations'] , ax=axes[0])
+
+plot2=sns.barplot( x=data_apps['Name_check'],y=data_apps['Number_Apps'] , ax=axes[1])
+
+plt.show(fig)
+
+# No. of installation / No. of apps
+
+figure=plt.figure(figsize=(12,5))
+title=plt.title("Installations/Total Apps", y = 1.0)
+plot3=sns.barplot( x=data_apps['Name_check'],y=data_install['Number_Installations']/data_apps['Number_Apps'] ,palette=sns.color_palette(palette="Set1",n_colors=2,desat=.8))
+plt.show(figure)
 
 '''
 FOR PROJECT 2

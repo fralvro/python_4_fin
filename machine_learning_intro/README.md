@@ -17,6 +17,8 @@ This workshop is a 10-week course, designed for people familiar with Python 3.6.
 
 1.1 - Data Structuring and Cleaning
 
+[Data Structuring and Cleaning Notebook](pandas/pandas_intro.ipynb)
+
     * Pandas
 
         *   What is pandas?
@@ -31,6 +33,8 @@ This workshop is a 10-week course, designed for people familiar with Python 3.6.
 [Project 1 (Data Cleaning)](pandas/project_1.ipynb)
 
 1.2 - Exploring Information and Asking Questions 
+
+[Exploring Information Notebook](pandas/apps_exploratory.ipynb)
 
     * Pandas
 
@@ -65,6 +69,21 @@ This workshop is a 10-week course, designed for people familiar with Python 3.6.
 
 **9- Make Decisions**
 
+## References
+
+Course of L. [Felipe González](https://github.com/felipegonzalez). [Aprendizaje de Máquina](https://felipegonzalez.github.io/aprendizaje-maquina-mcd-2018/introduccion.html#aprendizaje-supervisado-1). 2018-12-03. **Best Machine Learning Course I could have ever had**
+
+
+
+That course is based on:
+
+* An Introduction to Statistical Learning, James et al. (2014)
+* Curso de Machine Learning de Andrew Ng, Ng (2017) **Available at Coursera**
+  (some images of this course were included on the notebooks I wrote)
+  
+* Deep Learning, Goodfellow, Bengio, and Courville (2016)
+
+* Each notebook includes a list of individual references where material was extracted from. I just listed here the main sources of content where I got a lot, if not all, the theory that is presented at the workshop.
 
 ## Useful Material
 
