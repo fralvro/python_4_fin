@@ -6,14 +6,18 @@ This workshop is a 10-week course, designed for people familiar with Python 3.6.
 
 ## Table Of Contents
 
-0- Overview
+**0- Overview**
 
-    * The Data Science Process 
-    * Machine Learning
+[Overview](overview.md)
 
-1- Pandas
+        * The Data Science Process 
+        * Machine Learning
 
-    *   Pandas
+**1. Data Cleaning and Exploration**
+
+1.1 - Data Structuring and Cleaning
+
+    * Pandas
 
         *   What is pandas?
         *   Create DataFrame
@@ -24,32 +28,42 @@ This workshop is a 10-week course, designed for people familiar with Python 3.6.
         *   Applying Operations over Pandas DataFrame
         *   Aggregation Functions
 
-[Project 1](pandas/project_1.ipynb)
+[Project 1 (Data Cleaning)](pandas/project_1.ipynb)
 
-2- Supervised Learning
+1.2 - Exploring Information and Asking Questions 
 
-    * Balance between rigidity and complexity
-    * Train and Test Error
-    * How to estimate a function?
+    * Pandas
 
-3-  Regression
+        * Discover Interesting patterns 
+        * Understand Data Structures
+        * Ask Questions to be solved through Machine Learning
 
-    * Linear Regression
-    * Standarizing and Normalizing Data
-    * Polynomial Regression
-    * Logistic Regression
+[Project 2 (Asking Questions)](pandas/project_2.ipynb)
 
-4- KNN
+**2- Supervised Learning**
 
-5- SVM
+        * Balance between rigidity and complexity
+        * Train and Test Error
+        * How to estimate a function?
 
-6- Tree Based Models
+**3-  Regression**
 
-7- Neural Networks
+        * Linear Regression
+        * Standarizing and Normalizing Data
+        * Polynomial Regression
+        * Logistic Regression
 
-8- Time Series
+**4- KNN**
 
-9- Make Decisions
+**5- SVM**
+
+**6- Tree Based Models**
+
+**7- Neural Networks**
+
+**8- Time Series**
+
+**9- Make Decisions**
 
 
 ## Useful Material
