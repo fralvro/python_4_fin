@@ -46,15 +46,21 @@ This workshop is a 10-week course, designed for people familiar with Python 3.6.
 
 **2- Supervised Learning**
 
+[Supervised Learning Notebook](supervised_learning/supervised_learning.ipynb)
+
         * Balance between rigidity and complexity
         * Train and Test Error
         * How to estimate a function?
 
 **3-  Regression**
 
+[Regression Notebook](supervised_learning/regression1.ipynb)
+
         * Linear Regression
         * Standarizing and Normalizing Data
         * Polynomial Regression
+
+[Logistic Regression Notebook]()
         * Logistic Regression
 
 **4- KNN**
