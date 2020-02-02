@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import os
+import math
 import xgboost as xgb
 import sklearn.datasets
 import sklearn.metrics
@@ -84,6 +85,7 @@ apps.info()
 
 apps['Last Updated'].unique()
 
+#apps.to_csv('Documents/apps_clean.csv')
 
 '''
 EDA
@@ -298,7 +300,38 @@ Ask yourself this questions (Besides name pick values that are present in the da
     - When would you release it? (please think about a realistic year)
     - Towards whom you'll direct it (Content Rating)?
     - What will the Genre be? (Genres column)
-    
+'''
+
+'''LINEAR REGRESSION
+'''
+
+apps = pd.read_csv('Documents/apps_clean.csv')
+
+
+# Reviews as a function of Installs
+
+x_df = pd.DataFrame(apps.Installs)
+y_df = pd.DataFrame(apps.Reviews)
+
+plt.figure(figsize=(10,8))
+plt.plot(x_df, y_df,'ko')  #kx,kv,k.,ko porque son dataframes y no np arrays
+plt.xlabel('Number of Installs')
+plt.ylabel('Number of Reviews')
+
+apps['log10_installs'] = apps['Installs'].apply(lambda x: math.log10(x))
+apps['log10_reviews'] = apps['Reviews'].apply(lambda x: math.log10(x))
+
+x_df = pd.DataFrame(apps.log10_installs)
+y_df = pd.DataFrame(apps.log10_reviews)
+
+plt.figure(figsize=(10,8))
+plt.plot(x_df, y_df,'ko')  #kx,kv,k.,ko porque son dataframes y no np arrays
+plt.xlabel('Poblacion de la Ciudad en  10,000s')
+plt.ylabel('Ganancia en $10,000s')
+
+# How do we find the best model from all the possible ones
+
+'''    
     PROJECT 3
     
     - How much would you charge?

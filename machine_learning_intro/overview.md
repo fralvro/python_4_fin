@@ -20,7 +20,7 @@ I tried to find a data set with the following characteristics:
 
 <img src="media/app_developmnet_trends_2020.png" width="800">
 
-We'll use the **Google Play Store Apps** Dataset, which might be useful for people who are interested in technology and business development. The dataset can be found in [Kaggle](https://www.kaggle.com/lava18/google-play-store-apps/data). Please [download the dataset](https://www.dropbox.com/s/w33rwi2ei9q4h3w/google-play-store-apps.zip?dl=0) to be able to follow each session's practical part.
+We'll use the **Google Play Store Apps** Dataset, which might be useful for people who are interested in technology and business development. The dataset can be found in [Kaggle](https://www.kaggle.com/lava18/google-play-store-apps/data). Please [download the dataset](https://www.dropbox.com/sh/fhk309b9f1c5568/AACQOyCYzQT3DxFZCieDW_ida?dl=0) to be able to follow each session's practical part.
 
 
 
