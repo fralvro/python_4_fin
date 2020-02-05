@@ -57,11 +57,15 @@ This workshop is a 10-week course, designed for people familiar with Python 3.6.
 [Regression Notebook](supervised_learning/regression1.ipynb)
 
         * Linear Regression
+        * One-Hot Encoding
         * Standarizing and Normalizing Data
         * Polynomial Regression
 
 [Logistic Regression Notebook]()
         * Logistic Regression
+**4- Logistic Regression**
+
+
 
 **4- KNN**
 
