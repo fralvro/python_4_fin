@@ -1,4 +1,4 @@
-import pandas as pd
+gimport pandas as pd
 import numpy as np
 import os
 import math
@@ -542,7 +542,7 @@ Let's do the regression methods we've done before but now to predict one missing
 Classification 
 
 Treating it as a missing value
-
+t
 - I'll do it to predict Category
 - You'll do it to predict Content Rating
 
