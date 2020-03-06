@@ -1,6 +1,7 @@
-import pandas as pd
+gimport pandas as pd
 import numpy as np
 import os
+import math
 import xgboost as xgb
 import sklearn.datasets
 import sklearn.metrics
@@ -84,6 +85,7 @@ apps.info()
 
 apps['Last Updated'].unique()
 
+#apps.to_csv('Documents/apps_clean.csv')
 
 '''
 EDA
@@ -258,7 +260,32 @@ type_bar_sum(install_sum_type)
 
 100*install_sum_type.loc[1][1]/install_sum_type.loc[0][1]
 
-money.loc[data['Category'] == 'FINANCE']
+
+# Analyze Apps by Name 
+
+apps['Name_check']=['>2 words' if len(x.split())>2 else '<=2words' for x in apps['App'] ]
+
+data_install= apps.groupby('Name_check')['Installs'].agg('sum').reset_index(name='Number_Installations')
+data_apps= apps.groupby('Name_check').size().reset_index(name='Number_Apps')
+
+
+fig,axes = plt.subplots(figsize=(15,3),ncols=2, nrows=1)
+
+title=axes[0].set_title("No. of Installations", y = 1.1)
+title=axes[1].set_title("No of Apps", y = 1.1)
+
+plot1=sns.barplot( x=data_install['Name_check'],y=data_install['Number_Installations'] , ax=axes[0])
+
+plot2=sns.barplot( x=data_apps['Name_check'],y=data_apps['Number_Apps'] , ax=axes[1])
+
+plt.show(fig)
+
+# No. of installation / No. of apps
+
+figure=plt.figure(figsize=(12,5))
+title=plt.title("Installations/Total Apps", y = 1.0)
+plot3=sns.barplot( x=data_apps['Name_check'],y=data_install['Number_Installations']/data_apps['Number_Apps'] ,palette=sns.color_palette(palette="Set1",n_colors=2,desat=.8))
+plt.show(figure)
 
 '''
 FOR PROJECT 2
@@ -273,7 +300,206 @@ Ask yourself this questions (Besides name pick values that are present in the da
     - When would you release it? (please think about a realistic year)
     - Towards whom you'll direct it (Content Rating)?
     - What will the Genre be? (Genres column)
+'''
+
+'''LINEAR REGRESSION
+'''
+
+apps = pd.read_csv('Documents/apps_clean.csv')
+
+
+# Reviews as a function of Installs
+
+x_df = pd.DataFrame(apps.Installs)
+y_df = pd.DataFrame(apps.Reviews)
+
+plt.figure(figsize=(10,8))
+plt.plot(x_df, y_df,'ko')  #kx,kv,k.,ko porque son dataframes y no np arrays
+plt.xlabel('Number of Installs')
+plt.ylabel('Number of Reviews')
+
+apps['log10_installs'] = apps['Installs'].apply(lambda x: math.log10(x))
+apps['log10_reviews'] = apps['Reviews'].apply(lambda x: math.log10(x))
+
+x_df = pd.DataFrame(apps.log10_installs)
+y_df = pd.DataFrame(apps.log10_reviews)
+
+plt.figure(figsize=(10,8))
+plt.plot(x_df, y_df,'ko')  #kx,kv,k.,ko porque son dataframes y no np arrays
+plt.xlabel('Log10 Installs')
+plt.ylabel('Log10 Reviews')
+
+# How do we find the best model from all that could exist here?
+
+plt.figure(figsize=(10,8))
+plt.plot(x_df, y_df, 'ko')
+plt.plot([2, 9], [0,7], '-')
+plt.plot([0, 9], [0,9], '-')
+plt.plot([0, 9], [1,6], '-')
+plt.xlabel('Log10 Installs')
+plt.ylabel('Log10 Reviews')
+
+
+
+
+
+# How do we find the best model from all the possible ones
+
+# Define Gradient Descent
+
+
+
+# Gradient Descent In our Example
+
+## Agregamos una columna de unos porque no existe x_o para la ordenada al origen
+x_df['intercept'] = 1
+
+## Construimos una matrix para X
+x = np.array(x_df)# we want this dim=2
+y = np.array(y_df).flatten()  #dim1, flatten concatena arrays de arrays en uno solo continuo, chk zip
+theta = np.array([0, 0]) #vector inicializado con ceros
+
+# Función de costo 
+
+def cost_function(X, y, theta):
+    """
+    Funcion de costo
+    """
+    ## Numero de puntos en el dataset
+    m = len(y) 
     
+    J = np.sum((X.dot(theta)-y)**2)/2/m # Error cuadrático medio
+    
+    return J
+
+
+cost_function(x, y, theta)
+
+## Gradient descent 
+
+def gradient_descent(X, y, theta, alpha, iterations):
+    
+    cost_history = [0] * iterations
+    
+    for iteration in range(iterations):
+        hypothesis = X.dot(theta)
+        loss = hypothesis-y # al principio este loss es enorme porque hypothesis es un vec de ceros
+        # and the first is a zeros vector because is dot of X and zeros. Este es el error que aparece en las ecuaciones de Felipe
+        m = len(y) 
+        gradient = X.T.dot(loss)/m  #the size of the gradient is maximized by the size of loss
+        # this means that the bigger the loss (error), the more it'll move
+        theta = theta - alpha*gradient
+        cost = cost_function(X, y, theta) # mse
+        cost_history[iteration] = cost # mse
+        #print(loss)
+        #print(gradient)
+        
+    return theta, cost_history
+ 
+iterations = 1500 #asumimos convergencia
+alpha = 0.01
+    
+(t, c) = gradient_descent(x,y,theta,alpha, iterations)
+
+## Print parameters of the model beta_1,beta_0 (intercept) 
+print(t)
+
+
+## Ejemplo de prediccion en dos puntos x=3.5 y x=7, 
+print(np.array([3.5, 1]).dot(t))
+print(np.array([7, 1]).dot(t))
+
+### What do our predictions mean? Returning to original values
+### We can create a function for predicting in original magnitudes
+
+def lin_predict(t,reviews):
+    
+    mod_rev = math.log10(reviews)
+    pred = np.array([mod_rev, 1]).dot(t)
+    pred_real = math.pow(pred,10)
+    return pred_real 
+    
+apps.loc[123,:]
+lin_predict(t,9) # A little far (Very)
+np.array([3.69897, 1]).dot(t)
+
+apps.loc[1223,:]
+lin_predict(t,10000000)
+np.array([7, 1]).dot(t)
+
+math.log10(559186)
+print(np.array([5.74, 1]).dot(t))
+math.pow(4.02454,10)
+
+#### Our predictions are not that good, but this is expected somehow because we are doing a l reg
+
+## Plotting the best fit line
+h_x = np.linspace(0, 9, 20) #entre 0 y 9 quiero 20 puntos regularmente espaciados
+h_y = [t[1] + t[0]*xx for xx in h_x]
+
+
+plt.figure(figsize=(10,6))
+plt.plot(x_df.log10_installs, y_df, '.')
+plt.plot(h_x, h_y, '-')
+plt.axis([0,10,-2,10])
+plt.xlabel('Log10 Installs')
+plt.ylabel('Log10 Reviews')
+plt.title('Linear Regression Model log10 Reviews Vs log10 Installs')
+
+# Selecting alpha (Size of the step) Felipe Notes 
+
+
+#        * One-Hot Encoding
+
+# What if we have a categorical variable? (6.3 Felipe)
+
+# Make it yes/no (0 or 1)
+
+## Example we have Free / Paid
+
+apps.Type.unique()
+
+# Should we make a a column of free and a column of paid? No, unless they are not exclusive
+
+
+
+## 
+
+#         * Standarizing and Normalizing Data
+
+## Do this after creating a model using othe variables and using an easier lin model
+
+### Idea of what we did last time so that we can see the importance on having 
+### similar distributions for gradient descent
+
+## Our case suggests that we may have local minimums in where our descent could stop
+
+
+sns.jointplot(apps.Installs,apps.Reviews, kind="kde");
+
+sns.jointplot(apps.log10_installs,apps.log10_reviews, kind="kde");
+
+
+## Use Felipe Notes to describe Normalization
+
+installs_s = (apps.log10_installs - np.mean(apps.log10_installs))/np.std(apps.log10_installs)
+
+reviews_s = (apps.log10_reviews - np.mean(apps.log10_reviews))/np.std(apps.log10_reviews)
+
+sns.jointplot(installs_s,reviews_s, kind="kde");
+
+
+#        * Polynomial Regression
+
+#   Discussion about why it works   
+
+## Other useful notebooks
+#   imbalanced.ipynb
+#   Scikit-learn and Feature Engineering
+#   feature_extraction_and_selection.ipynb
+
+
+'''    
     PROJECT 3
     
     - How much would you charge?
@@ -316,7 +542,7 @@ Let's do the regression methods we've done before but now to predict one missing
 Classification 
 
 Treating it as a missing value
-
+t
 - I'll do it to predict Category
 - You'll do it to predict Content Rating
 
